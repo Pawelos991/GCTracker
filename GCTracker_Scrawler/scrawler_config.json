@@ -1,0 +1,48 @@
+{
+  "RunHeadless": false,
+  "UserAgents": [
+    "Mozilla / 5.0(Windows NT 10.0; Win64; x64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 97.0.4692.99 Safari / 537.36",
+    "Mozilla / 5.0(Windows NT 10.0; Win64; x64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 96.0.4664.45 Safari / 537.36",
+    "Mozilla / 5.0(Windows NT 10.0; Win64; x64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 95.0.4638.54 Safari / 537.36",
+    "Mozilla / 5.0(Windows NT 10.0; Win64; x64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 94.0.4606.61 Safari / 537.36",
+    "Mozilla / 5.0(Windows NT 10.0; Win64; x64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 93.0.4577.82 Safari / 537.36",
+    "Mozilla / 5.0(Windows NT 10.0; Win64; x64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 92.0.4515.159 Safari / 537.36",
+    "Mozilla / 5.0(Windows NT 10.0; Win64; x64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 91.0.4472.124 Safari / 537.36"
+  ],
+  "BrowserArguments": [
+    "--disable-blink-features=AutomationControlled"
+  ],
+  "MinWaitTime": 4000,
+  "MaxWaitTime": 7000,
+  "MaxNumberOfPages": 2,
+  "MaxNumberOfElementsPerPage": 1,
+  "SitesSettings": [
+    {
+      "SiteURL": "https://www.komputronik.pl/category/1099/karty-graficzne.html?a%5B507%5D%5B%5D=148653&a%5B507%5D%5B%5D=149246&a%5B507%5D%5B%5D=150120&filter=1&showBuyActiveOnly=0",
+      "NextPageButtonXPath": "/html/body/ktr-site/div/div[2]/div/div/ktr-product-list/div/ktr-transclude/div[2]/div[2]/nav[1]/ul/li[6]/button",
+      "ItemSearchMethod": "BY_TEXT",
+      "ItemSearchPhrase": "Zobacz więcej",
+      "NameXPath": "/html/body/ktr-site/div/ktr-product/ktr-transclude/div[2]/div/div/div[1]/div[1]/div[1]/div[1]/h1",
+      "PriceXPaths": [
+        "/html/body/ktr-site/div/ktr-product/ktr-transclude/div[2]/div/div/div[1]/div[2]/div[1]/div[2]/div/div"
+      ],
+      "ProducentCodeXPath": "/html/body/ktr-site/div/ktr-product/ktr-transclude/div[2]/div/div/div[1]/div[1]/div[1]/div[4]/div[2]/div/p[2]",
+      "ImageAddressXPath": "/html/body/ktr-site/div/ktr-product/ktr-transclude/div[2]/div/div/div[1]/div[1]/div[1]/div[3]/div[1]/ktr-gallery/div/ktr-transclude/div/div/section/div/ol/li/div/img",
+      "CookieButtonXPath" : "/html/body/div[2]/div[2]/div/div/div[2]/div/div/button"
+    },
+    {
+      "SiteURL": "https://www.morele.net/kategoria/karty-graficzne-12/,,,,,,,,0,,,,8143O2073322.2073326.2146397/1/?noi",
+      "NextPageButtonXPath": "/html/body/main/div/div[1]/div[2]/div[1]/div[8]/div[2]/ul/li[4]/a",
+      "ItemSearchMethod": "BY_CLASS",
+      "ItemSearchPhrase": "productLink",
+      "NameXPath": "/html/body/main/div/section/div[1]/div[6]/div/div/div/div[2]/div/div[2]/h1",
+      "PriceXPaths": [
+        "/html/body/main/div/section/div[1]/div[6]/aside/div[1]/div[4]/div[2]/div/div/div[1]/div/div/div[1]",
+        "/html/body/main/div/section/div[1]/div[6]/aside/div[2]/div[4]/div[2]/div/div/div[1]/div/div/div[1]"
+      ],
+      "ProducentCodeXPath": "/html/body/main/div/section/div[1]/div[9]/div[5]/div/div[1]/div[2]/div[1]/div/div[2]/span[2]",
+      "ImageAddressXPath": "/html/body/main/div/section/div[1]/div[6]/div/div/div/div[1]/div[2]/div[1]/div[1]/picture/img",
+      "CookieButtonXPath" : "/html/body/div[5]/div/div/button"
+    }
+  ]
+}
