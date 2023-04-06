@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GC_Tracker_Datalayer", "GC_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GC_Tracker_Logic", "GC_Tracker_Logic\GC_Tracker_Logic.csproj", "{F98E451E-A586-4DDB-A2BE-9969DEAC5D91}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCTracker_Scrawler", "GCTracker_Scrawler\GCTracker_Scrawler.csproj", "{0FBA212B-E2A4-4FDC-BB9E-A7E17DC04896}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,10 @@ Global
 		{F98E451E-A586-4DDB-A2BE-9969DEAC5D91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F98E451E-A586-4DDB-A2BE-9969DEAC5D91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F98E451E-A586-4DDB-A2BE-9969DEAC5D91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FBA212B-E2A4-4FDC-BB9E-A7E17DC04896}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FBA212B-E2A4-4FDC-BB9E-A7E17DC04896}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FBA212B-E2A4-4FDC-BB9E-A7E17DC04896}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FBA212B-E2A4-4FDC-BB9E-A7E17DC04896}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
