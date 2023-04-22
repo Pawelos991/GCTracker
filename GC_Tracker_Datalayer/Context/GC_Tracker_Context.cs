@@ -21,6 +21,7 @@ public partial class GC_Tracker_Context : DbContext
     public virtual DbSet<SchemaVersion> SchemaVersions { get; set; }
 
     public virtual DbSet<Scraper> Scrapers { get; set; }
+    public virtual DbSet<Product> Products { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -28,6 +29,12 @@ public partial class GC_Tracker_Context : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Product>(entity =>
+        {
+            entity.ToTable("Product");
+            entity.HasKey(x => x.Id);
+        });
+
         modelBuilder.Entity<Crawler>(entity =>
         {
             entity.HasKey(e => e.Id);
