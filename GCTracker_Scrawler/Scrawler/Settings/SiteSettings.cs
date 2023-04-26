@@ -3,12 +3,11 @@ namespace GCTracker_Scrawler.Scrawler.Settings;
 public class SiteSettings
 {
 	public string SiteURL { get; set; }
-	public string NextPageButtonXPath { get; set; }
-	public ItemSearchMethod ItemSearchMethod { get; set; }
-	public string ItemSearchPhrase { get; set; }
-	public string NameXPath { get; set; }
-	public List<string> PriceXPaths { get; set; }
-	public string ProducentCodeXPath { get; set; }
-	public string ImageAddressXPath { get; set; }
-	public string CookieButtonXPath { get; set; }
+	public SearchData NextPageButtonSearchData { get; set; }
+	public SearchData ItemSearchData { get; set; }
+	public SearchData NameSearchData { get; set; }
+	public SearchData PriceSearchData { get; set; }
+	public SearchData ProducerSearchData { get; set; }
+	public SearchData ImageSearchData { get; set; }
+	public SearchData CookieButtonSearchData { get; set; }
 }

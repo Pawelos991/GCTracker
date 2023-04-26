@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using GCTracker_Scrawler.Scrawler.Data;
 using GCTracker_Scrawler.Scrawler.Settings;
 using OpenQA.Selenium;
@@ -66,7 +65,7 @@ public class GPUScrawler
 
 		try
 		{
-			IWebElement cookieButton = driver.FindElement(By.XPath(siteSettings.CookieButtonXPath));
+			IWebElement cookieButton = SiteReader.GetPageItem(driver, siteSettings.CookieButtonSearchData);
 
 			cookieButton.Click();
 			Wait(driver);
@@ -77,17 +76,11 @@ public class GPUScrawler
 		}
 	}
 
-	private List<string> GetAddressesFromCurrentPage(ISearchContext driver, SiteSettings siteSettings)
+	//TODO: Add handling not found elements
+	private List<string> GetAddressesFromCurrentPage(SlDriver driver, SiteSettings siteSettings)
 	{
 		List<string> addresses = new ();
-		ItemSearchMethod searchMethod = siteSettings.ItemSearchMethod;
-
-		IReadOnlyCollection<IWebElement> productList = searchMethod switch
-		{
-			ItemSearchMethod.BY_TEXT => driver.FindElements(By.LinkText(siteSettings.ItemSearchPhrase)),
-			ItemSearchMethod.BY_CLASS => driver.FindElements(By.ClassName(siteSettings.ItemSearchPhrase)),
-			_ => throw new InvalidEnumArgumentException(nameof(searchMethod), (int) searchMethod, typeof(ItemSearchMethod))
-		};
+		IReadOnlyCollection<IWebElement> productList = SiteReader.GetPageItems(driver, siteSettings.ItemSearchData);
 
 		foreach (IWebElement product in productList)
 		{
@@ -106,9 +99,10 @@ public class GPUScrawler
 
 	private bool TryMoveToNextPage(SlDriver driver, SiteSettings siteSettings, ref int currentPageNumber)
 	{
-		IWebElement nextPageButton = driver.FindElement(By.XPath(siteSettings.NextPageButtonXPath));
+		//TODO: Handle not found button
+		IWebElement nextPageButton = SiteReader.GetPageItem(driver, siteSettings.NextPageButtonSearchData);
 
-		if (nextPageButton != null && currentPageNumber < settings.MaxNumberOfPages)
+		if (currentPageNumber < settings.MaxNumberOfPages)
 		{
 			nextPageButton.Click();
 			currentPageNumber++;
@@ -135,34 +129,18 @@ public class GPUScrawler
 		return products;
 	}
 
-	private ProductData GetProductData(ISearchContext driver, SiteSettings siteSettings)
+	private ProductData GetProductData(SlDriver driver, SiteSettings siteSettings)
 	{
+		//TODO: Remove unnecessary text from products data
 		ProductData product = new ()
 		{
-			Name = driver.FindElement(By.XPath(siteSettings.NameXPath)).Text,
-			Price = GetElementByXPathCollection(driver, siteSettings.PriceXPaths).Text,
-			ProducentCode = driver.FindElement(By.XPath(siteSettings.ProducentCodeXPath)).Text,
-			ImageAddress = driver.FindElement(By.XPath(siteSettings.ImageAddressXPath)).GetAttribute("src")
+			Name = SiteReader.GetPageItem(driver, siteSettings.NameSearchData).GetAttribute("innerText"),
+			Price = SiteReader.GetPageItem(driver, siteSettings.PriceSearchData).GetAttribute("innerText"),
+			ProducentCode = SiteReader.GetPageItem(driver, siteSettings.ProducerSearchData).GetAttribute("innerText"),
+			ImageAddress = SiteReader.GetPageItem(driver, siteSettings.ImageSearchData).GetAttribute("src")
 		};
 
 		return product;
-	}
-
-	private IWebElement GetElementByXPathCollection(ISearchContext driver, List<string> xPathCollection)
-	{
-		foreach (string xPath in xPathCollection)
-		{
-			try
-			{
-				return driver.FindElement(By.XPath(xPath));
-			}
-			catch (NoSuchElementException e)
-			{
-				Console.WriteLine($"Element could not be found with XPath: {xPath}");
-			}
-		}
-
-		throw new NoSuchElementException();
 	}
 
 	private List<string> GetDriverArguments()
