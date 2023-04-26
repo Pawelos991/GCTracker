@@ -18,31 +18,66 @@
   "MaxNumberOfElementsPerPage": 1,
   "SitesSettings": [
     {
-      "SiteURL": "https://www.komputronik.pl/category/1099/karty-graficzne.html?a%5B507%5D%5B%5D=148653&a%5B507%5D%5B%5D=149246&a%5B507%5D%5B%5D=150120&filter=1&showBuyActiveOnly=0",
-      "NextPageButtonXPath": "/html/body/ktr-site/div/div[2]/div/div/ktr-product-list/div/ktr-transclude/div[2]/div[2]/nav[1]/ul/li[6]/button",
-      "ItemSearchMethod": "BY_TEXT",
-      "ItemSearchPhrase": "Zobacz więcej",
-      "NameXPath": "/html/body/ktr-site/div/ktr-product/ktr-transclude/div[2]/div/div/div[1]/div[1]/div[1]/div[1]/h1",
-      "PriceXPaths": [
-        "/html/body/ktr-site/div/ktr-product/ktr-transclude/div[2]/div/div/div[1]/div[2]/div[1]/div[2]/div/div"
-      ],
-      "ProducentCodeXPath": "/html/body/ktr-site/div/ktr-product/ktr-transclude/div[2]/div/div/div[1]/div[1]/div[1]/div[4]/div[2]/div/p[2]",
-      "ImageAddressXPath": "/html/body/ktr-site/div/ktr-product/ktr-transclude/div[2]/div/div/div[1]/div[1]/div[1]/div[3]/div[1]/ktr-gallery/div/ktr-transclude/div/div/section/div/ol/li/div/img",
-      "CookieButtonXPath" : "/html/body/div[2]/div[2]/div/div/div[2]/div/div/button"
+      "SiteURL": "https://www.morele.net/kategoria/karty-graficzne-12/,,,,,,,,0,,,,8143O2073322.2073326.2146397/1/?noi",
+      "NextPageButtonSearchData": {
+        "Text": "a.pagination-btn:has(> i.icon-arrow-right)",
+        "ItemSearchMethod": "BY_CSS_SELECTOR"
+      },
+      "ItemSearchData": {
+        "Text": "productLink",
+        "ItemSearchMethod": "BY_CLASS"
+      },
+      "NameSearchData": {
+        "Text": "prod-name",
+        "ItemSearchMethod": "BY_CLASS"
+      },
+      "PriceSearchData": {
+        "Text": "product-price",
+        "ItemSearchMethod": "BY_CLASS"
+      },
+      "ProducerSearchData": {
+        "Text": "//div[@class='specification__row']/span[@class='specification__name' and text()='Kod producenta']/following-sibling::span[@class='specification__value']",
+        "ItemSearchMethod": "BY_XPATH"
+      },
+      "ImageSearchData": {
+        "Text": "//div[contains(@class, 'swiper-slide') and .//picture/img[@itemprop='image']]/picture/img[@itemprop='image']",
+        "ItemSearchMethod": "BY_XPATH"
+      },
+      "CookieButtonSearchData": {
+        "Text": ".btn.btn-secondary.btn-secondary-outline.btn-md.close-cookie-box",
+        "ItemSearchMethod": "BY_CSS_SELECTOR"
+      }
     },
     {
-      "SiteURL": "https://www.morele.net/kategoria/karty-graficzne-12/,,,,,,,,0,,,,8143O2073322.2073326.2146397/1/?noi",
-      "NextPageButtonXPath": "/html/body/main/div/div[1]/div[2]/div[1]/div[8]/div[2]/ul/li[4]/a",
-      "ItemSearchMethod": "BY_CLASS",
-      "ItemSearchPhrase": "productLink",
-      "NameXPath": "/html/body/main/div/section/div[1]/div[6]/div/div/div/div[2]/div/div[2]/h1",
-      "PriceXPaths": [
-        "/html/body/main/div/section/div[1]/div[6]/aside/div[1]/div[4]/div[2]/div/div/div[1]/div/div/div[1]",
-        "/html/body/main/div/section/div[1]/div[6]/aside/div[2]/div[4]/div[2]/div/div/div[1]/div/div/div[1]"
-      ],
-      "ProducentCodeXPath": "/html/body/main/div/section/div[1]/div[9]/div[5]/div/div[1]/div[2]/div[1]/div/div[2]/span[2]",
-      "ImageAddressXPath": "/html/body/main/div/section/div[1]/div[6]/div/div/div/div[1]/div[2]/div[1]/div[1]/picture/img",
-      "CookieButtonXPath" : "/html/body/div[5]/div/div/button"
+      "SiteURL": "https://www.komputronik.pl/category/1099/karty-graficzne.html?a%5B507%5D%5B%5D=148653&a%5B507%5D%5B%5D=149246&a%5B507%5D%5B%5D=150120&filter=1&showBuyActiveOnly=0",
+      "NextPageButtonSearchData": {
+        "Text": "/html/body/ktr-site/div/div[2]/div/div/ktr-product-list/div/ktr-transclude/div[2]/div[2]/nav[1]/ul/li[6]/button",
+        "ItemSearchMethod": "BY_XPATH"
+      },
+      "ItemSearchData": {
+        "Text": "Zobacz więcej",
+        "ItemSearchMethod": "BY_TEXT"
+      },
+      "NameSearchData": {
+        "Text": "tests-product-name",
+        "ItemSearchMethod": "BY_CLASS"
+      },
+      "PriceSearchData": {
+        "Text": "div.inline-flex.items-center.mt-2.flex-wrap[ng-if='!$ctrl.changeBaseData'] > div.font-bold.leading-8.text-3xl",
+        "ItemSearchMethod": "BY_CSS_SELECTOR"
+      },
+      "ProducerSearchData": {
+        "Text": "/html/body/ktr-site/div/ktr-product/ktr-transclude/div[2]/div/div/div[1]/div[1]/div[1]/div[4]/div[2]/div/p[2]",
+        "ItemSearchMethod": "BY_XPATH"
+      },
+      "ImageSearchData": {
+        "Text": ".max-w-full.max-h-full",
+        "ItemSearchMethod": "BY_CSS_SELECTOR"
+      },
+      "CookieButtonSearchData": {
+        "Text": "onetrust-accept-btn-handler",
+        "ItemSearchMethod": "BY_ID"
+      }
     }
   ]
 }
