@@ -131,12 +131,11 @@ public class GPUScrawler
 
 	private ProductData GetProductData(SlDriver driver, SiteSettings siteSettings)
 	{
-		//TODO: Remove unnecessary text from products data
 		ProductData product = new ()
 		{
-			Name = SiteReader.GetPageItem(driver, siteSettings.NameSearchData).GetAttribute("innerText"),
-			Price = SiteReader.GetPageItem(driver, siteSettings.PriceSearchData).GetAttribute("innerText"),
-			ProducentCode = SiteReader.GetPageItem(driver, siteSettings.ProducerSearchData).GetAttribute("innerText"),
+			Name = DataProcessor.ProcessCardNameValue(SiteReader.GetPageItem(driver, siteSettings.NameSearchData).GetAttribute("innerText")),
+			Price = DataProcessor.ProcessPriceValue(SiteReader.GetPageItem(driver, siteSettings.PriceSearchData).GetAttribute("innerText")),
+			ProducentCode = DataProcessor.ProcessProducentCodeValue(SiteReader.GetPageItem(driver, siteSettings.ProducerSearchData).GetAttribute("innerText")),
 			ImageAddress = SiteReader.GetPageItem(driver, siteSettings.ImageSearchData).GetAttribute("src")
 		};
 
