@@ -2,6 +2,7 @@ namespace GCTracker_Scrawler.Scrawler.Settings;
 
 public class SiteSettings
 {
+	public string SiteName { get; set; }
 	public string SiteURL { get; set; }
 	public SearchData NextPageButtonSearchData { get; set; }
 	public SearchData ItemSearchData { get; set; }

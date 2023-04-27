@@ -136,7 +136,8 @@ public class GPUScrawler
 			Name = DataProcessor.ProcessCardNameValue(SiteReader.GetPageItem(driver, siteSettings.NameSearchData).GetAttribute("innerText")),
 			Price = DataProcessor.ProcessPriceValue(SiteReader.GetPageItem(driver, siteSettings.PriceSearchData).GetAttribute("innerText")),
 			ProducentCode = DataProcessor.ProcessProducentCodeValue(SiteReader.GetPageItem(driver, siteSettings.ProducerSearchData).GetAttribute("innerText")),
-			ImageAddress = SiteReader.GetPageItem(driver, siteSettings.ImageSearchData).GetAttribute("src")
+			ImageAddress = SiteReader.GetPageItem(driver, siteSettings.ImageSearchData).GetAttribute("src"),
+			StoreName = siteSettings.SiteName
 		};
 
 		return product;

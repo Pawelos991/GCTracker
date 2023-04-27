@@ -18,6 +18,7 @@
   "MaxNumberOfElementsPerPage": 1,
   "SitesSettings": [
     {
+      "SiteName": "Morele",
       "SiteURL": "https://www.morele.net/kategoria/karty-graficzne-12/,,,,,,,,0,,,,8143O2073322.2073326.2146397/1/?noi",
       "NextPageButtonSearchData": {
         "Text": "a.pagination-btn:has(> i.icon-arrow-right)",
@@ -49,6 +50,7 @@
       }
     },
     {
+      "SiteName": "Komputronik",
       "SiteURL": "https://www.komputronik.pl/category/1099/karty-graficzne.html?a%5B507%5D%5B%5D=148653&a%5B507%5D%5B%5D=149246&a%5B507%5D%5B%5D=150120&filter=1&showBuyActiveOnly=0",
       "NextPageButtonSearchData": {
         "Text": "/html/body/ktr-site/div/div[2]/div/div/ktr-product-list/div/ktr-transclude/div[2]/div[2]/nav[1]/ul/li[6]/button",

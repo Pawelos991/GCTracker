@@ -7,4 +7,5 @@ public class ProductData
 	public float Price { get; set; }
 	public string ProducentCode { get; set; }
 	public string ImageAddress { get; set; }
+	public string StoreName { get; set; }
 }

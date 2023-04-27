@@ -34,5 +34,6 @@ static void LogProductsData(List<ProductData> products)
 		Console.WriteLine($"Price: {product.Price}");
 		Console.WriteLine($"ProducentCode: {product.ProducentCode}");
 		Console.WriteLine($"ImageAddress: {product.ImageAddress}");
+		Console.WriteLine($"StoreName: {product.StoreName}");
 	}
 }
