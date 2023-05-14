@@ -13,7 +13,6 @@ namespace GCTracker_Backend.Configure
         {
             serviceCollection.AddDbContextFactory<GC_Tracker_Context>(
                 options => options.UseNpgsql(configurationManager.GetValue<string>("ConnectionString")));
-            serviceCollection.AddScoped<IScraperServices, ScraperServices>();
             serviceCollection.AddScoped<IGpuServices, GpuServcies>();
 
             serviceCollection.AddEndpointsApiExplorer();
