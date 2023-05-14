@@ -12,8 +12,9 @@ namespace GCTracker_Backend.Configure
             ConfigurationManager configurationManager)
         {
             serviceCollection.AddDbContextFactory<GC_Tracker_Context>(
-                options => options.UseSqlServer(configurationManager.GetValue<string>("ConnectionString")));
+                options => options.UseNpgsql(configurationManager.GetValue<string>("ConnectionString")));
             serviceCollection.AddScoped<IScraperServices, ScraperServices>();
+            serviceCollection.AddScoped<IGpuServices, GpuServcies>();
 
             serviceCollection.AddEndpointsApiExplorer();
             serviceCollection.AddSwaggerGen(c =>

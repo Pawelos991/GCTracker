@@ -8,8 +8,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GCTracker_Backend", "GCTrac
 		{9E182506-6046-44E4-99EB-F3E2BAC3F4C9} = {9E182506-6046-44E4-99EB-F3E2BAC3F4C9}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GC_Tracker_DB_Versioning", "GC_Tracker_DB_Versioning\GC_Tracker_DB_Versioning.csproj", "{377220F9-E564-4BF8-9162-CB66DB9A344C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GC_Tracker_Datalayer", "GC_Tracker_Datalayer\GC_Tracker_Datalayer.csproj", "{9E182506-6046-44E4-99EB-F3E2BAC3F4C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GC_Tracker_Logic", "GC_Tracker_Logic\GC_Tracker_Logic.csproj", "{F98E451E-A586-4DDB-A2BE-9969DEAC5D91}"

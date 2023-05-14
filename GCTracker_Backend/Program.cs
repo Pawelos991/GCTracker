@@ -8,7 +8,6 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
 builder.Services.RegisterServices(builder.Configuration);
-
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 

@@ -16,11 +16,11 @@ public partial class GC_Tracker_Context : DbContext
     {
     }
 
-    public virtual DbSet<Crawler> Crawlers { get; set; }
+    //public virtual DbSet<Crawler> Crawlers { get; set; }
 
-    public virtual DbSet<SchemaVersion> SchemaVersions { get; set; }
+    //public virtual DbSet<SchemaVersion> SchemaVersions { get; set; }
 
-    public virtual DbSet<Scraper> Scrapers { get; set; }
+    //public virtual DbSet<Scraper> Scrapers { get; set; }
     public virtual DbSet<Product> Products { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -31,42 +31,8 @@ public partial class GC_Tracker_Context : DbContext
     {
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.ToTable("Product");
+            entity.ToTable("product");
             entity.HasKey(x => x.Id);
-        });
-
-        modelBuilder.Entity<Crawler>(entity =>
-        {
-            entity.HasKey(e => e.Id);
-
-            entity.ToTable("crawler");
-
-            entity.Property(e => e.CrawlerLink).HasMaxLength(1);
-            entity.Property(e => e.Created).HasColumnType("datetime");
-            entity.Property(e => e.CreatedBy).HasMaxLength(255);
-            entity.Property(e => e.PageName).HasMaxLength(255);
-        });
-
-        modelBuilder.Entity<SchemaVersion>(entity =>
-        {
-            entity.HasKey(e => e.Id);
-
-            entity.Property(e => e.Applied).HasColumnType("datetime");
-            entity.Property(e => e.ScriptName).HasMaxLength(255);
-        });
-
-        modelBuilder.Entity<Scraper>(entity =>
-        {
-            entity.HasKey(e => e.Id);
-
-            entity.ToTable("scraper");
-
-            entity.Property(e => e.Created).HasColumnType("datetime");
-            entity.Property(e => e.CreatedBy).HasMaxLength(255);
-            entity.Property(e => e.Name).HasMaxLength(255);
-            entity.Property(e => e.PageName).HasMaxLength(255);
-            entity.Property(e => e.PhotoLink).HasMaxLength(1);
-            entity.Property(e => e.Price).HasColumnType("smallmoney");
         });
 
         OnModelCreatingPartial(modelBuilder);
