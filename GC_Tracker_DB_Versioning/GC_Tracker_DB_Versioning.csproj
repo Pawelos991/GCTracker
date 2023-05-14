@@ -16,15 +16,11 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="appsettings.json" />
-    <None Remove="Scripts\202303181023_CreateScrapTable.sql" />
-    <None Remove="Scripts\202303181109_CreateScraplerTable.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Scripts\202303181023_CreateScrapTable.sql" />
-    <EmbeddedResource Include="Scripts\202303181109_CreateScraplerTable.sql" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="dbup-core" Version="5.0.10" />
@@ -46,6 +42,11 @@
       <HintPath>$(SSDTUnitTestPath)\Microsoft.Data.Tools.Schema.Sql.UnitTestingAdapter.dll</HintPath>
       <Private>True</Private>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Scripts\202305141600_CreateProductPG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <SsdtUnitTestVersion>3.1</SsdtUnitTestVersion>
