@@ -397,3 +397,5 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 *.idea
+GCTracker_Backend/appsettings.json
+GCTracker_Scrawler/appsettings.json

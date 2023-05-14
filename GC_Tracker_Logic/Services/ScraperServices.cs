@@ -20,17 +20,7 @@ namespace GC_Tracker_Logic.Services
         }
         public async Task<List<ScraperData>> GetScraperDataAsync()
         {
-            var dboObjects = await _context.Scrapers.ToListAsync();
-            return dboObjects.Select(x => new ScraperData()
-            {
-                Id = x.Id,
-                Created = x.Created,
-                CreatedBy = x.CreatedBy,
-                Name = x.Name,
-                PageName = x.PageName,
-                PhotoLink = x.PhotoLink,
-                Price = x.Price
-            }).ToList();
+            throw new NotImplementedException();
         }
     }
 }
