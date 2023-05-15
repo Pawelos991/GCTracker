@@ -1,4 +1,4 @@
-using GCTracker_Scrawler.Scrawler.Data;
+using GC_Tracker_Datalayer.Model;
 using GCTracker_Scrawler.Scrawler.Settings;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -18,10 +18,10 @@ public class GPUScrawler
 		this.settings = settings;
 	}
 
-	public List<ProductData> GetGPUData()
+	public List<Product> GetGPUData()
 	{
 		SlDriver driver = CreateDriver();
-		List<ProductData> products = new ();
+		List<Product> products = new ();
 
 		foreach (SiteSettings siteSettings in settings.SitesSettings)
 		{
@@ -39,7 +39,7 @@ public class GPUScrawler
 		return UndetectedChromeDriver.Instance(DRIVER_PROFILE, options);
 	}
 
-	private List<ProductData> GetGPUDataFromSite(SlDriver driver, SiteSettings siteSettings)
+	private List<Product> GetGPUDataFromSite(SlDriver driver, SiteSettings siteSettings)
 	{
 		List<string> productsAddresses = new ();
 
@@ -114,9 +114,9 @@ public class GPUScrawler
 		return false;
 	}
 
-	private List<ProductData> GetProductsData(SlDriver driver, List<string> addresses, SiteSettings siteSettings)
+	private List<Product> GetProductsData(SlDriver driver, List<string> addresses, SiteSettings siteSettings)
 	{
-		List<ProductData> products = new ();
+		List<Product> products = new ();
 
 		foreach (string address in addresses)
 		{
@@ -129,9 +129,9 @@ public class GPUScrawler
 		return products;
 	}
 
-	private ProductData GetProductData(SlDriver driver, SiteSettings siteSettings)
+	private Product GetProductData(SlDriver driver, SiteSettings siteSettings)
 	{
-		ProductData product = new ()
+		Product product = new ()
 		{
 			Name = DataProcessor.ProcessCardNameValue(SiteReader.GetPageItem(driver, siteSettings.NameSearchData).GetAttribute("innerText")),
 			Price = DataProcessor.ProcessPriceValue(SiteReader.GetPageItem(driver, siteSettings.PriceSearchData).GetAttribute("innerText")),
