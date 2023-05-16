@@ -5,10 +5,10 @@ namespace GCTracker_Scrawler.Scrawler;
 
 public static class DataProcessor
 {
-	public static float ProcessPriceValue(string price)
+	public static decimal ProcessPriceValue(string price)
 	{
 		string proccesedPrice = Regex.Replace(price, @"[^\d,.]+", "").Replace(",", ".");
-		return float.Parse(proccesedPrice, CultureInfo.InvariantCulture.NumberFormat);
+		return decimal.Parse(proccesedPrice, CultureInfo.InvariantCulture.NumberFormat);
 	}
 
 	public static string ProcessCardNameValue(string name)

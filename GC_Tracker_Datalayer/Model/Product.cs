@@ -19,5 +19,7 @@ namespace GC_Tracker_Datalayer.Model
         public string ProducentCode { get; set; }
         [Column("imageaddress")]
         public string ImageAddress { get; set; }
+        [Column("storename")]
+        public string StoreName { get; set; }
     }
 }
