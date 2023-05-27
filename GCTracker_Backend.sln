@@ -24,10 +24,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GCTracker_Tests", "GCTracke
 		{FB27F858-5272-4F5E-81D4-774FB4DE0202} = {FB27F858-5272-4F5E-81D4-774FB4DE0202}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCTracker_IntegrationTests", "GCTracker_IntegrationTests\GCTracker_IntegrationTests.csproj", "{4767DBCB-F53D-4249-88D5-BAB8C8E70AAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GCTracker_IntegrationTests", "GCTracker_IntegrationTests\GCTracker_IntegrationTests.csproj", "{4767DBCB-F53D-4249-88D5-BAB8C8E70AAB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{FB27F858-5272-4F5E-81D4-774FB4DE0202} = {FB27F858-5272-4F5E-81D4-774FB4DE0202}
 	EndProjectSection
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{572AD0FD-2C93-456D-A7AE-B228A214A7FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{4767DBCB-F53D-4249-88D5-BAB8C8E70AAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4767DBCB-F53D-4249-88D5-BAB8C8E70AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4767DBCB-F53D-4249-88D5-BAB8C8E70AAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{572AD0FD-2C93-456D-A7AE-B228A214A7FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{572AD0FD-2C93-456D-A7AE-B228A214A7FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{572AD0FD-2C93-456D-A7AE-B228A214A7FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{572AD0FD-2C93-456D-A7AE-B228A214A7FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

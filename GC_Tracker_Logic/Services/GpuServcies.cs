@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using GC_Tracker_Datalayer.Context;
 using GC_Tracker_Logic.Filters;
 using GC_Tracker_Logic.Interfaces;
+using GC_Tracker_Logic.ML;
 using GC_Tracker_Logic.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,10 +16,11 @@ namespace GC_Tracker_Logic.Services
     public class GpuServcies : IGpuServices
     {
         private readonly GC_Tracker_Context _context;
-
+        private readonly PredictPriceChange _mlPriceChange;
         public GpuServcies(GC_Tracker_Context context)
         {
             _context = context;
+            _mlPriceChange = new PredictPriceChange();
         }
 
         public async Task<List<GpuDto>> GetAllGpu()
@@ -78,6 +80,21 @@ namespace GC_Tracker_Logic.Services
             }
 
             return null;
+        }
+
+        public async Task<bool> CheckGpuTrendByProducentCode(string producentCode)
+        {
+            var elemsToPredict = await _context.Products.Where(x => x.ProducentCode == producentCode).Select(x => new GpuDto()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Price = x.Price,
+                ProducentCode = x.ProducentCode,
+                ImageAddress = x.ImageAddress,
+
+            }).ToListAsync();
+            var status = await _mlPriceChange.GpuPriceChange(elemsToPredict);
+            return status.GetValueOrDefault();
         }
     }
 }
