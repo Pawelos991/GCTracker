@@ -32,7 +32,7 @@ namespace GC_Tracker_Logic.Services
                 Price = x.Price,
                 ProducentCode = x.ProducentCode,
                 ImageAddress = x.ImageAddress,
-
+                StoreName = x.StoreName,
             }).ToListAsync();
         }
 
@@ -50,8 +50,8 @@ namespace GC_Tracker_Logic.Services
                 Price = x.Price,
                 ProducentCode = x.ProducentCode,
                 ImageAddress = x.ImageAddress,
-
-            }).ToListAsync();
+                StoreName = x.StoreName,
+                }).ToListAsync();
         }
 
         public async Task<int> GetCountFilterGpu(ProductFilter filter)
@@ -76,14 +76,16 @@ namespace GC_Tracker_Logic.Services
                     Price = elemToRet.Price,
                     ImageAddress = elemToRet.ImageAddress,
                     ProducentCode = elemToRet.ProducentCode,
+                    StoreName = elemToRet.StoreName,
                 };
             }
 
             return null;
         }
 
-        public async Task<bool> CheckGpuTrendByProducentCode(string producentCode)
+        public async Task<PredicedPrice> CheckGpuTrendByProducentCode(string producentCode)
         {
+
             var elemsToPredict = await _context.Products.Where(x => x.ProducentCode == producentCode).Select(x => new GpuDto()
             {
                 Id = x.Id,
@@ -91,10 +93,11 @@ namespace GC_Tracker_Logic.Services
                 Price = x.Price,
                 ProducentCode = x.ProducentCode,
                 ImageAddress = x.ImageAddress,
-
+                StoreName = x.StoreName,
             }).ToListAsync();
+            while (elemsToPredict.Count < 5) elemsToPredict.Add(elemsToPredict.Last());
             var status = await _mlPriceChange.GpuPriceChange(elemsToPredict);
-            return status.GetValueOrDefault();
+            return status;
         }
     }
 }

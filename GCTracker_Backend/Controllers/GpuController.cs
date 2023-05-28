@@ -21,7 +21,7 @@ namespace GCTracker_Backend.Controllers
             return Ok(elementsToRet);
         }
 
-        [HttpGet("api/gpu/{Id}")]
+        [HttpGet("api/gpu/{id}")]
         public async Task<IActionResult> GetGpuById(int id)
         {
             var elementsToRet = await _gpuServices.GetGpuById(id);

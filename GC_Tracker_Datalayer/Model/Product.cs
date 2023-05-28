@@ -20,6 +20,6 @@ namespace GC_Tracker_Datalayer.Model
         [Column("imageaddress")]
         public string ImageAddress { get; set; }
         [Column("storename")]
-        public string StoreName { get; set; }
+        public string? StoreName { get; set; }
     }
 }

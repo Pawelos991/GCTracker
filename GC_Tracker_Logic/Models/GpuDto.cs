@@ -13,5 +13,6 @@ namespace GC_Tracker_Logic.Models
         public decimal Price { get; set; }
         public string ProducentCode { get; set; }
         public string ImageAddress { get; set; }
+        public string StoreName { get; set; }
     }
 }
