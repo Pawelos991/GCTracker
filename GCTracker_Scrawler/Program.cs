@@ -8,7 +8,7 @@ using GCTracker_Scrawler.Config;
 using GC_Tracker_Datalayer.Model;
 
 const string SCRAWLER_CONFIG_NAME = "scrawler_config.json";
-const int COLLECTING_DATA_DELAY = 28800000;
+const int COLLECTING_DATA_DELAY = 7200000;
 
 var config = ConfigReader.ReadAppSettings();
 var services = new ServiceCollection();
