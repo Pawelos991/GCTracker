@@ -14,8 +14,8 @@
   ],
   "MinWaitTime": 4000,
   "MaxWaitTime": 7000,
-  "MaxNumberOfPages": 2,
-  "MaxNumberOfElementsPerPage": 1,
+  "MaxNumberOfPages": 100,
+  "MaxNumberOfElementsPerPage": 100,
   "SitesSettings": [
     {
       "SiteName": "Morele",
