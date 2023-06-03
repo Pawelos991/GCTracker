@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using GC_Tracker_Datalayer.Context;
@@ -20,6 +21,7 @@ namespace GCTracker_Scrawler.Services
 
         public static IServiceCollection InitDataManipulationServices(this ServiceCollection serviceCollection)
         {
+            serviceCollection.AddScoped<IImageServices, ImageServices>();
             return serviceCollection.AddScoped<IProductSevices, ProductServices>();
         }
     }

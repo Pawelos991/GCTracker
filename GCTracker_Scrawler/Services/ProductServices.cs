@@ -17,9 +17,12 @@ namespace GCTracker_Scrawler.Services
     public class ProductServices : IProductSevices
     {
         private GC_Tracker_Context _context;
-        public ProductServices(GC_Tracker_Context context)
+        private readonly IImageServices _imageServices;
+
+        public ProductServices(GC_Tracker_Context context, IImageServices image)
         {
             _context = context;
+            _imageServices = image;
         }
 
         public async Task SaveProductAsync(Product item)

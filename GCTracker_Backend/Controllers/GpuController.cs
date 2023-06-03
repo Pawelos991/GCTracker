@@ -45,8 +45,15 @@ namespace GCTracker_Backend.Controllers
         [HttpGet("api/gpu/trends/{prodId}")]
         public async Task<IActionResult> GetGpuTrend(string prodId)
         {
-            var elementsToRet = await _gpuServices.CheckGpuTrendByProducentCode(prodId);
-            return Ok(elementsToRet);
+            try
+            {
+                var elementsToRet = await _gpuServices.CheckGpuTrendByProducentCode(prodId);
+                return Ok(elementsToRet);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
     }

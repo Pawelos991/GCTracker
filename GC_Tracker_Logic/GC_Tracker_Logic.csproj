@@ -8,7 +8,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.ML" Version="2.0.1" />
+    <PackageReference Include="Microsoft.ML.Mkl.Redist" Version="2.0.1" />
     <PackageReference Include="Microsoft.ML.TimeSeries" Version="2.0.1" />
+    <PackageReference Include="MKL.NET.linux-x64" Version="2022.0.1.117" />
+    <PackageReference Include="MKL.NET.osx-x64" Version="2022.0.0.105" />
   </ItemGroup>
 
   <ItemGroup>
