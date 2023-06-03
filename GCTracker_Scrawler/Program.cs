@@ -2,15 +2,13 @@
 using GCTracker_Scrawler.Scrawler;
 using GCTracker_Scrawler.Scrawler.Settings;
 using GCTracker_Scrawler.Services;
-using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Microsoft.Extensions.DependencyInjection;
 using GCTracker_Scrawler.Config;
-using System;
 using GC_Tracker_Datalayer.Model;
 
 const string SCRAWLER_CONFIG_NAME = "scrawler_config.json";
-
+const int COLLECTING_DATA_DELAY = 28800000;
 
 var config = ConfigReader.ReadAppSettings();
 var services = new ServiceCollection();
@@ -21,12 +19,18 @@ var serviceProvider = services.BuildServiceProvider();
 if (TryGetGPUScrawlerSettings(out GPUScrawlerSettings settings))
 {
 	GPUScrawler scrawler = new (settings);
-
-	List<Product> gpuData = scrawler.GetGPUData();
-    LogProductsData(gpuData);
-
-    var product = serviceProvider.GetService<IProductSevices>();
-    await product.SaveProductsAsync(gpuData);
+	var product = serviceProvider.GetService<IProductSevices>();
+	
+	Timer timer = new Timer(async _ =>
+	{
+		List<Product> gpuData = scrawler.GetGPUData();
+		LogProductsData(gpuData);
+		await product.SaveProductsAsync(gpuData);
+		
+		Console.WriteLine($"Waiting for the next download data  process (remaining time: {COLLECTING_DATA_DELAY} milliseconds.)");
+	}, null, 0, COLLECTING_DATA_DELAY);
+	
+	Thread.Sleep(Timeout.Infinite);
 }
 
 static bool TryGetGPUScrawlerSettings(out GPUScrawlerSettings settings)
