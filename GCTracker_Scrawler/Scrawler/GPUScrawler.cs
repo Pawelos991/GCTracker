@@ -20,6 +20,7 @@ public class GPUScrawler
 
 	public List<Product> GetGPUData()
 	{
+		Console.WriteLine("Start collecting GPU data.");
 		SlDriver driver = CreateDriver();
 		List<Product> products = new ();
 
@@ -27,7 +28,8 @@ public class GPUScrawler
 		{
 			products.AddRange(GetGPUDataFromSite(driver, siteSettings));
 		}
-
+		
+		Console.WriteLine("GPU Data is collected successfully.");
 		return products;
 	}
 
@@ -41,6 +43,8 @@ public class GPUScrawler
 
 	private List<Product> GetGPUDataFromSite(SlDriver driver, SiteSettings siteSettings)
 	{
+		Console.WriteLine($"Collecting GPU data from {siteSettings.SiteName} site.");
+		
 		List<string> productsAddresses = new ();
 
 		driver.Navigate().GoToUrl(siteSettings.SiteURL);
@@ -108,6 +112,7 @@ public class GPUScrawler
 			currentPageNumber++;
 			Wait(driver);
 
+			Console.WriteLine($"Moving to page {currentPageNumber}.");
 			return true;
 		}
 
@@ -116,11 +121,14 @@ public class GPUScrawler
 
 	private List<Product> GetProductsData(SlDriver driver, List<string> addresses, SiteSettings siteSettings)
 	{
+		Console.WriteLine("Collecting products data.");
 		List<Product> products = new ();
 
 		foreach (string address in addresses)
 		{
+			Console.WriteLine($"Opening site with product data: {address}");
 			driver.Navigate().GoToUrl(address);
+			Console.WriteLine($"Reading product data...");
 			Wait(driver);
 
 			products.Add(GetProductData(driver, siteSettings));
