@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "GCTracker_IntegrationTests": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

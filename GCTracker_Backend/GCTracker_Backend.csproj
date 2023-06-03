@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	<ContainerImageName>gc_tracker_backend</ContainerImageName>
 	<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+	<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>

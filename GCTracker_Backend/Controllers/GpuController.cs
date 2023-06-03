@@ -21,7 +21,7 @@ namespace GCTracker_Backend.Controllers
             return Ok(elementsToRet);
         }
 
-        [HttpGet("api/gpu/{Id}")]
+        [HttpGet("api/gpu/{id}")]
         public async Task<IActionResult> GetGpuById(int id)
         {
             var elementsToRet = await _gpuServices.GetGpuById(id);
@@ -39,6 +39,13 @@ namespace GCTracker_Backend.Controllers
         public async Task<IActionResult> GetCountPagingProductWithFilter([FromQuery] ProductFilter filter)
         {
             var elementsToRet = await _gpuServices.GetCountFilterGpu(filter);
+            return Ok(elementsToRet);
+        }
+
+        [HttpGet("api/gpu/trends/{prodId}")]
+        public async Task<IActionResult> GetGpuTrend(string prodId)
+        {
+            var elementsToRet = await _gpuServices.CheckGpuTrendByProducentCode(prodId);
             return Ok(elementsToRet);
         }
 

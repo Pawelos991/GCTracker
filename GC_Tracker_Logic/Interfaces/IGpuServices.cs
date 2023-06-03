@@ -14,6 +14,7 @@ namespace GC_Tracker_Logic.Interfaces
         public Task<List<GpuDto>> GetFilterGpu(ProductFilter filter);
         public Task<int> GetCountFilterGpu(ProductFilter filter);
         public Task<List<GpuDto>> GetAllGpu();
+        public Task<PredicedPrice> CheckGpuTrendByProducentCode(string producentCode);
 
     }
 }
