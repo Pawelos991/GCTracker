@@ -27,6 +27,7 @@ if (TryGetGPUScrawlerSettings(out GPUScrawlerSettings settings))
 		LogProductsData(gpuData);
 		await product.SaveProductsAsync(gpuData);
 		
+		Console.WriteLine($"Added {gpuData.Count} products to database.");
 		Console.WriteLine($"Waiting for the next download data  process (remaining time: {COLLECTING_DATA_DELAY} milliseconds.)");
 	}, null, 0, COLLECTING_DATA_DELAY);
 	
