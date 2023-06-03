@@ -55,6 +55,45 @@
         "ItemSearchMethod": "BY_CSS_SELECTOR",
         "GetParent": false
       }
+    },
+    {
+      "SiteName": "Komputronik",
+      "SiteURL": "https://www.komputronik.pl/category/1099/karty-graficzne.html?a%5B507%5D%5B%5D=148653&a%5B507%5D%5B%5D=149246&a%5B507%5D%5B%5D=150120&filter=1&showBuyActiveOnly=0",
+      "NextPageButtonSearchData": {
+        "Text": "li.flex > button[ng-click*='$ctrl.changePage'] > i.i-arrow-right",
+        "ItemSearchMethod": "BY_CSS_SELECTOR",
+        "GetParent": true
+      },
+      "ItemSearchData": {
+        "Text": "Zobacz więcej",
+        "ItemSearchMethod": "BY_TEXT",
+        "GetParent": false
+      },
+      "NameSearchData": {
+        "Text": "tests-product-name",
+        "ItemSearchMethod": "BY_CLASS",
+        "GetParent": false
+      },
+      "PriceSearchData": {
+        "Text": "div.inline-flex.items-center.mt-2.flex-wrap[ng-if='!$ctrl.changeBaseData'] > div.font-bold.leading-8.text-3xl",
+        "ItemSearchMethod": "BY_CSS_SELECTOR",
+        "GetParent": false
+      },
+      "ProducerSearchData": {
+        "Text": "/html/body/ktr-site/div/ktr-product/ktr-transclude/div[2]/div/div/div[1]/div[1]/div[1]/div[4]/div[2]/div/p[2]",
+        "ItemSearchMethod": "BY_XPATH",
+        "GetParent": false
+      },
+      "ImageSearchData": {
+        "Text": ".max-w-full.max-h-full",
+        "ItemSearchMethod": "BY_CSS_SELECTOR",
+        "GetParent": false
+      },
+      "CookieButtonSearchData": {
+        "Text": "onetrust-accept-btn-handler",
+        "ItemSearchMethod": "BY_ID",
+        "GetParent": false
+      }
     }
   ]
 }
