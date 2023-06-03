@@ -10,7 +10,7 @@ public static class SiteReader
 	{
 		ItemSearchMethod searchMethod = searchData.ItemSearchMethod;
 		
-		return searchMethod switch
+		IWebElement element = searchMethod switch
 		{
 			ItemSearchMethod.BY_TEXT => driver.FindElement(By.LinkText(searchData.Text)),
 			ItemSearchMethod.BY_CLASS => driver.FindElement(By.ClassName(searchData.Text)),
@@ -19,6 +19,8 @@ public static class SiteReader
 			ItemSearchMethod.BY_CSS_SELECTOR => driver.FindElement(By.CssSelector(searchData.Text)),
 			_ => throw new InvalidEnumArgumentException(nameof(searchMethod), (int) searchMethod, typeof(ItemSearchMethod))
 		};
+
+		return searchData.GetParent ? element.FindElement(By.XPath("./..")) : element;
 	}
 	
 	public static IReadOnlyCollection<IWebElement> GetPageItems(SlDriver driver, SearchData searchData)
