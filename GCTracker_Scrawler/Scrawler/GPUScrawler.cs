@@ -24,12 +24,21 @@ public class GPUScrawler
 		SlDriver driver = CreateDriver();
 		List<Product> products = new ();
 
-		foreach (SiteSettings siteSettings in settings.SitesSettings)
+		try
 		{
-			products.AddRange(GetGPUDataFromSite(driver, siteSettings));
+			foreach (SiteSettings siteSettings in settings.SitesSettings)
+			{
+				GetGPUDataFromSite(driver, siteSettings, products);
+			}
+			
+			Console.WriteLine("GPU Data is collected successfully.");
+		}
+		catch (WebDriverException e)
+		{
+			Console.WriteLine(e);
+			Console.WriteLine($"{nameof(WebDriverException)} occurred, data collection was aborted.");
 		}
 		
-		Console.WriteLine("GPU Data is collected successfully.");
 		return products;
 	}
 
@@ -41,7 +50,7 @@ public class GPUScrawler
 		return UndetectedChromeDriver.Instance(DRIVER_PROFILE, options);
 	}
 
-	private List<Product> GetGPUDataFromSite(SlDriver driver, SiteSettings siteSettings)
+	private void GetGPUDataFromSite(SlDriver driver, SiteSettings siteSettings, List<Product> productsOutput)
 	{
 		Console.WriteLine($"Collecting GPU data from {siteSettings.SiteName} site.");
 		
@@ -59,7 +68,7 @@ public class GPUScrawler
 			productsAddresses.AddRange(GetAddressesFromCurrentPage(driver, siteSettings));
 		} while (TryMoveToNextPage(driver, siteSettings, ref pageNumber));
 
-		return GetProductsData(driver, productsAddresses, siteSettings);
+		GetProductsData(driver, productsAddresses, siteSettings, productsOutput);
 	}
 
 	private void AcceptCookies(SlDriver driver, SiteSettings siteSettings)
@@ -103,26 +112,32 @@ public class GPUScrawler
 
 	private bool TryMoveToNextPage(SlDriver driver, SiteSettings siteSettings, ref int currentPageNumber)
 	{
-		//TODO: Handle not found button
-		IWebElement nextPageButton = SiteReader.GetPageItem(driver, siteSettings.NextPageButtonSearchData);
-
-		if (currentPageNumber < settings.MaxNumberOfPages)
+		try
 		{
-			nextPageButton.Click();
-			currentPageNumber++;
-			Wait(driver);
+			IWebElement nextPageButton = SiteReader.GetPageItem(driver, siteSettings.NextPageButtonSearchData);
 
-			Console.WriteLine($"Moving to page {currentPageNumber}.");
-			return true;
+			if (currentPageNumber < settings.MaxNumberOfPages)
+			{
+				nextPageButton.Click();
+				currentPageNumber++;
+				Wait(driver);
+
+				Console.WriteLine($"Moving to page {currentPageNumber}.");
+				return true;
+			}
+
+			return false;
 		}
-
-		return false;
+		catch (NoSuchElementException exception)
+		{
+			Console.WriteLine("Move to next page button is not found.");
+			return false;
+		}
 	}
 
-	private List<Product> GetProductsData(SlDriver driver, List<string> addresses, SiteSettings siteSettings)
+	private void GetProductsData(SlDriver driver, List<string> addresses, SiteSettings siteSettings, List<Product> productsOutput)
 	{
 		Console.WriteLine("Collecting products data.");
-		List<Product> products = new ();
 
 		foreach (string address in addresses)
 		{
@@ -131,10 +146,8 @@ public class GPUScrawler
 			Console.WriteLine($"Reading product data...");
 			Wait(driver);
 
-			products.Add(GetProductData(driver, siteSettings));
+			productsOutput.Add(GetProductData(driver, siteSettings));
 		}
-
-		return products;
 	}
 
 	private Product GetProductData(SlDriver driver, SiteSettings siteSettings)
@@ -172,7 +185,7 @@ public class GPUScrawler
 
 	private string GetRandomUserAgent()
 	{
-		int agentIndex = new Random().Next(settings.UserAgents.Count + 1);
+		int agentIndex = new Random().Next(settings.UserAgents.Count);
 		return settings.UserAgents[agentIndex];
 	}
 
