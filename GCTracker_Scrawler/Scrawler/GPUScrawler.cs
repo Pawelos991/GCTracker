@@ -151,8 +151,10 @@ public class GPUScrawler
 		{
 			arguments.AddRange(new List<string>()
 			{
-				"headless",
-				"disable-gpu",
+				"--no-sandbox",
+				"--headless",
+				"--disable-gpu",
+				"--disable-dev-shm-usage",
 				$"--user-agent={GetRandomUserAgent()}"
 			});
 		}
