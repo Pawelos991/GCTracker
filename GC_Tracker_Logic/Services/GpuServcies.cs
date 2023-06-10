@@ -77,6 +77,7 @@ namespace GC_Tracker_Logic.Services
                     ImageAddress = elemToRet.ImageAddress,
                     ProducentCode = elemToRet.ProducentCode,
                     StoreName = elemToRet.StoreName,
+                    Image = (await _context.Images.FirstOrDefaultAsync(x => x.ProducentCode == elemToRet.ProducentCode))?.Img
                 };
             }
 

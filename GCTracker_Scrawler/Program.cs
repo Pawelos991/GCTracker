@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Net.Mime;
+using System.Text;
 using GCTracker_Scrawler.Scrawler;
 using GCTracker_Scrawler.Scrawler.Settings;
 using GCTracker_Scrawler.Services;
@@ -6,6 +7,7 @@ using Newtonsoft.Json;
 using Microsoft.Extensions.DependencyInjection;
 using GCTracker_Scrawler.Config;
 using GC_Tracker_Datalayer.Model;
+using static System.Net.WebRequestMethods;
 
 const string SCRAWLER_CONFIG_NAME = "scrawler_config.json";
 const int COLLECTING_DATA_DELAY = 7200000;
@@ -19,13 +21,30 @@ var serviceProvider = services.BuildServiceProvider();
 if (TryGetGPUScrawlerSettings(out GPUScrawlerSettings settings))
 {
 	GPUScrawler scrawler = new (settings);
-	var product = serviceProvider.GetService<IProductSevices>();
-	
-	Timer timer = new Timer(async _ =>
+    var product = serviceProvider.GetService<IProductSevices>();
+    var imagesService = serviceProvider.GetService<IImageServices>();
+
+    Timer timer = new Timer(async _ =>
 	{
 		List<Product> gpuData = scrawler.GetGPUData();
 		LogProductsData(gpuData);
-		await product.SaveProductsAsync(gpuData);
+		var savedProd = await product.SaveProductsAsync(gpuData);
+        foreach (var gpu in savedProd)
+        {
+			if (gpu.Id > 0 && !String.IsNullOrEmpty(gpu.ImageAddress) && !(await imagesService.CheckIsImageExistInDatabase(gpu.ProducentCode)))
+            {
+                var image = await imagesService.GetImageByUrl(gpu.ImageAddress);
+                Images imageToSave = new Images()
+                {
+					Img = image,
+                    Imgsmall = image,
+                    ProducentCode = gpu.ProducentCode,
+					ProductId = gpu.Id,
+                };
+
+                await imagesService.SaveImages(imageToSave);
+            }
+        }
 		
 		Console.WriteLine($"Added {gpuData.Count} products to database.");
 		Console.WriteLine($"Waiting for the next download data  process (remaining time: {COLLECTING_DATA_DELAY} milliseconds.)");
@@ -57,4 +76,3 @@ static void LogProductsData(List<Product> products)
 		Console.WriteLine($"StoreName: {product.StoreName}");
 	}
 }
-

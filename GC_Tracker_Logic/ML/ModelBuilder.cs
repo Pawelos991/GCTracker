@@ -22,7 +22,7 @@ namespace GC_Tracker_Logic.ML
             //Create model
             var mlContext = new MLContext();
             var trainDataVeiw = mlContext.Data.LoadFromEnumerable(inputs);
-            var windowsSize = inputs.Count()/2 < 2  ? 2 : inputs.Count()/2;
+            var windowsSize = inputs.Count()/2 < 2  ? 2 : (inputs.Count()/2)-1;
             var forecastingPipeline = mlContext.Forecasting.ForecastBySsa(
                 outputColumnName: "ForecastedPriceDiffrence",
                 inputColumnName: "PriceDiffrence",

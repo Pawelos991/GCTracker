@@ -14,5 +14,6 @@ namespace GC_Tracker_Logic.Models
         public string ProducentCode { get; set; }
         public string ImageAddress { get; set; }
         public string StoreName { get; set; }
+        public byte[] Image { get; set; }
     }
 }

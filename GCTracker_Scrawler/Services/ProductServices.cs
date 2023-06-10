@@ -1,6 +1,7 @@
 ﻿using GC_Tracker_Datalayer.Context;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace GCTracker_Scrawler.Services
     public interface IProductSevices
     {
         Task SaveProductAsync(Product item);
-        Task SaveProductsAsync(List<Product> item);
+        Task<List<Product>> SaveProductsAsync(List<Product> item);
     }
 
     public class ProductServices : IProductSevices
@@ -31,10 +32,11 @@ namespace GCTracker_Scrawler.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task SaveProductsAsync(List<Product> item)
+        public async Task<List<Product>> SaveProductsAsync(List<Product> item)
         {
             _context.Products.AddRange(item);
             await _context.SaveChangesAsync();
+            return item;
         }
 
     }

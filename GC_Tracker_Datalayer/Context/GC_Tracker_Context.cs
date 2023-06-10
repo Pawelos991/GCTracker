@@ -20,7 +20,7 @@ public partial class GC_Tracker_Context : DbContext
 
     //public virtual DbSet<SchemaVersion> SchemaVersions { get; set; }
 
-    //public virtual DbSet<Scraper> Scrapers { get; set; }
+    public virtual DbSet<Images> Images { get; set; }
     public virtual DbSet<Product> Products { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -32,6 +32,12 @@ public partial class GC_Tracker_Context : DbContext
         modelBuilder.Entity<Product>(entity =>
         {
             entity.ToTable("product");
+            entity.HasKey(x => x.Id);
+        });
+
+        modelBuilder.Entity<Images>(entity =>
+        {
+            entity.ToTable("images");
             entity.HasKey(x => x.Id);
         });
 

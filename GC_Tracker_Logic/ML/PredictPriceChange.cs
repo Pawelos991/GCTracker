@@ -19,7 +19,21 @@ namespace GC_Tracker_Logic.ML
             }).ToList());
             var result = model.Predict();
             var predictedPrice = result.ForecastedPriceDiffrence[0];
-            return Task.FromResult(new PredicedPrice(predictedPrice, (float)HistoricalData.Last().Price < predictedPrice));
+            PricePrediction priceStatus;
+            if ((float)HistoricalData.Last().Price < predictedPrice)
+            {
+                priceStatus = PricePrediction.Rise;
+            }
+            else if ((float)HistoricalData.Last().Price > predictedPrice)
+            {
+                priceStatus = PricePrediction.Fall;
+            }
+            else
+            {
+                priceStatus = PricePrediction.Stable;
+            }
+
+            return Task.FromResult(new PredicedPrice(predictedPrice, priceStatus));
         }
     }
 }
